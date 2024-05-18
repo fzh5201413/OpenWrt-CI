@@ -17,3 +17,4 @@ sed -i 's/^#\(.*vernesong\)/\1/' feeds.conf.default
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 echo "src-git vernesong https://github.com/vernesong/OpenClash.git" >> "feeds.conf.default"
+echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> "feeds.conf.default"
