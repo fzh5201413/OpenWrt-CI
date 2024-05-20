@@ -15,11 +15,6 @@ name: OpenWrt Builder
 on:
   repository_dispatch:
   workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -99,11 +94,11 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Organize Config files
-      uses: actions/upload-artifact@main
-      with:
-        name: OpenWrt_conf${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/.config
+    # - name: Organize Config files
+    #   uses: actions/upload-artifact@main
+    #   with:
+    #     name: OpenWrt_conf${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+    #     path: openwrt/.config
 
     - name: Compile the firmware
       id: compile
@@ -152,15 +147,15 @@ jobs:
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@master
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+    # - name: Upload firmware to release
+    #   uses: softprops/action-gh-release@master
+    #   if: steps.tag.outputs.status == 'success' && !cancelled()
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     tag_name: ${{ steps.tag.outputs.release_tag }}
+    #     body_path: release.txt
+    #     files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
