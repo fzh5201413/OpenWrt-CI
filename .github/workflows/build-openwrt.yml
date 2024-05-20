@@ -99,6 +99,13 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+    - name: Organize Config files
+      uses: actions/upload-artifact@main
+      if: steps.organize.outputs.status == 'success' && !cancelled()
+      with:
+        name: OpenWrt_conf${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/.config
+
     - name: Compile the firmware
       id: compile
       run: |
