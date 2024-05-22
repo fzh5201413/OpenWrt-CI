@@ -15,11 +15,11 @@ name: OpenWrt Builder
 on:
   repository_dispatch:
   workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
+    # inputs:
+    #   ssh:
+    #     description: 'SSH connection to Actions'
+    #     required: false
+    #     default: 'false'
         
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -99,11 +99,11 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Organize Config files
-      uses: actions/upload-artifact@main
-      with:
-        name: OpenWrt_conf${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/.config
+    # - name: Organize Config files
+    #   uses: actions/upload-artifact@main
+    #   with:
+    #     name: OpenWrt_conf${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+    #     path: openwrt/.config
 
     - name: Compile the firmware
       id: compile
