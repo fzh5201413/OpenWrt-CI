@@ -19,3 +19,4 @@ sed -i 's/^#\(.*vernesong\)/\1/' feeds.conf.default
 echo "src-git my_packages https://github.com/openwrt/packages.git" >> "feeds.conf.default"
 echo "src-git vernesong https://github.com/vernesong/OpenClash.git" >> "feeds.conf.default"
 echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> "feeds.conf.default"
+echo "src-git bandwidthd https://github.com/AlexZhuo/luci-app-bandwidthd.git >> "feeds.conf.default"
